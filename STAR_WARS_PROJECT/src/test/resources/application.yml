@@ -1,0 +1,18 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+  #Cloudinary Properties
+  cloudinary:
+    api-key: test
+    api-secret: test
+    cloud-name: test
+
+  #Passwords for the first 2 users that are auto initialized in the DataBase: Admin and User
+  STAR_WARS_PROJECT:
+    admin:
+      defaultPasswordForAdmin: test
+    user:
+      defaultPasswordForUser: test
+
