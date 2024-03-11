@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta type="hidden" id="csrf" th:name="${_csrf.headerName}" th:value="${_csrf.token}">
+    <title>Employee Management</title>
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css}" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="/images/a-unique-design-icon-of-employee-management-vector.jpg">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+    <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
+    <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
+    <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap}">
+</head>
+
+<body>
+<nav th:fragment="navigation">
+    <nav class="navbar container-fluid">
+        <div class="container-fluid justify-content-center bg-dark pb-5 pt-5">
+
+            <li class="nav-item">
+                <a class="nav-link link-info border border-5 border-info rounded-pill p-2 me-2"
+                   th:href="@{/}">Home</a>
+            </li>
+
+            <th:block sec:authorize="isAnonymous()">
+                <li class="nav-item">
+                    <a class="nav-link link-info border border-5 border-info rounded-pill p-2 me-2"
+                       th:href="@{/users/login}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-info border border-5 border-info rounded-pill p-2 me-2"
+                       th:href="@{/users/register}">Register</a>
+                </li>
+            </th:block>
+
+            <th:block sec:authorize="isAuthenticated()">
+                <li class="nav-item" sec:authorize="hasRole('BOSS')">
+                    <a class="nav-link link-info border border-5 border-info rounded-pill p-2 me-2"
+                       th:href="@{/users/admin}">Admin</a>
+                </li>
+
+                <li class="nav-item">
+                    <form th:action="@{/users/logout}"
+                          th:method="POST">
+                        <button class="btn btn-outline-info border-5 rounded-pill p-2 me-2" type="submit">Logout
+                        </button>
+                    </form>
+                </li>
+            </th:block>
+
+        </div>
+    </nav>
+</nav>
+
+<footer th:fragment="footer" class="footer text-info fw-bolder container-fluid text-center pt-5 pb-5">
+    &copy; Antoni Veznev. All Rights Reserved.
+</footer>
+
+<script th:fragment="script"
+        th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js}"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous">
+</script>
+
+</body>
+</html>

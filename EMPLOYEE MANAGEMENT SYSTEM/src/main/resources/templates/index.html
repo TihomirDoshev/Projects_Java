@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{fragments/commons::head}"></head>
+<body class="container-fluid justify-content-center bg-dark">
+<nav th:replace="~{fragments/commons::navigation}"></nav>
+
+
+<th:block>
+    <h1 th:if="${isEmpty}" class="text-info container-fluid text-center p-5 m-3">Welcome! :) :) :)</h1>
+</th:block>
+<th:block>
+    <h1 th:unless="${isEmpty}" class="text-info container-fluid text-center p-5 m-3"
+        th:text="|Welcome, ${nameOfUser}!|">Welcome, User...</h1>
+</th:block>
+<div class="border border-info border-2 rounded-3 w-50 container-fluid">
+    <th:block sec:authorize="isAuthenticated()">
+        <li class="nav-item" sec:authorize="hasAnyRole('MODERATOR','BOSS')">
+            <a class="nav-link fw-bolder text-center link-info border border-2 border-info rounded-pill p-2 me-2 w-100 h-100 mt-4 mb-3 container-fluid"
+               th:href="@{/catalogue/departments}">Departments</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasAnyRole('MODERATOR','BOSS')">
+            <a class="nav-link fw-bolder text-center link-info border border-2 border-info rounded-pill p-2 me-2 w-100 h-100 mt-4 mb-3 container-fluid"
+               th:href="@{/catalogue/employees}">Employees</a>
+        </li>
+        <li class="nav-item" sec:authorize="hasAnyRole('MODERATOR','BOSS')">
+            <a class="nav-link fw-bolder text-center link-info border border-2 border-info rounded-pill p-2 me-2 w-100 h-100 mt-4 mb-3 container-fluid"
+               th:href="@{/catalogue/users}">Users</a>
+        </li>
+    </th:block>
+</div>
+
+
+<footer th:replace="~{fragments/commons::footer}"></footer>
+<script th:replace="~{fragments/commons::script}"></script>
+</body>
+</html>

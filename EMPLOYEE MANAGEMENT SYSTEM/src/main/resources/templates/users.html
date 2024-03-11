@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html lang="en">
+
+<head th:replace="~{fragments/commons::head}"></head>
+
+<body class="container-fluid justify-content-center bg-dark">
+
+<nav th:replace="~{fragments/commons::navigation}"></nav>
+
+
+<h1 class="text-info container-fluid text-center p-5 m-3">USERS PAGE</h1>
+
+<table class="table w-50 container-fluid">
+
+    <thead class="table-info">
+    <tr class="table-warning text-center">
+        <th scope="col">Users</th>
+        <th scope="col">Empty user info</th>
+    </tr>
+    </thead>
+
+    <tbody class="table-info">
+
+    <tr class="table-info text-center" th:each="emp : ${nullEmployees}" th:object="${emp}">
+        <th th:text="*{username}" scope="col">
+            Full Name
+        </th>
+        <th>
+            <a th:href="@{/edit/employees/{id}(id=*{userID})}"> EDIT </a>
+        </th>
+    </tr>
+
+    </tbody>
+
+</table>
+
+
+</body>
+
+<footer th:replace="~{fragments/commons::footer}"></footer>
+<script th:replace="~{fragments/commons::script}"></script>
+
+
+</html>

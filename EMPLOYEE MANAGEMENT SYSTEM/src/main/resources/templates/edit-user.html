@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="~{fragments/commons::head}"></head>
+
+<body class="container-fluid justify-content-center bg-dark">
+
+<nav th:replace="~{fragments/commons::navigation}"></nav>
+
+<body class="container-fluid justify-content-center bg-dark">
+
+
+<form class="edit"
+      th:action="@{/edit/employees/{id}(id=*{id})}"
+      th:method="POST"
+      th:object="${employeeFillInfoBindingModel}">
+    <div class="border border-info border-2 rounded-3 w-50 container-fluid">
+
+        <div class="col-sm-10 w-100 pt-2">
+            <label for="birthday" class="col-sm-10 w-100 pt-2 text-bg-light">Birthday:</label>
+            <input th:field="*{birthday}" th:errorclass="is-invalid" type="date" class="form-control"
+                   id="birthday"
+                   aria-describedby="birthdayHelpInline" placeholder="Birthday">
+            <small id="birthdayHelpInline"
+                   class="invalid-feedback bg-danger text-light rounded">
+                Birthday cant be in the future.
+            </small>
+        </div>
+
+        <div class="col-sm-10 w-100 pt-2">
+            <input th:field="*{email}" th:errorclass="is-invalid" type="text" class="form-control"
+                   id="email"
+                   aria-describedby="emailHelpInline" placeholder="Email">
+        </div>
+
+        <div class="col-sm-10 w-100 pt-3">
+            <input th:field="*{fullName}" th:errorclass="is-invalid" type="text" class="form-control"
+                   id="fullName"
+                   aria-describedby="fullNameHelpInline" placeholder="Full Name">
+        </div>
+
+        <div class="col-sm-10 w-100 pt-2">
+            <label for="hiredOn" class="col-sm-10 w-100 pt-2 text-bg-light">Hired on:</label>
+            <input th:field="*{hiredOn}" th:errorclass="is-invalid" type="date" class="form-control"
+                   id="hiredOn"
+                   aria-describedby="hiredOnHelpInline" placeholder="Hired on">
+            <small id="hiredOnHelpInline"
+                   class="invalid-feedback bg-danger text-light rounded">
+                Hired On cant be in the future.
+            </small>
+        </div>
+
+        <div class="col-sm-10 w-100 pt-2">
+            <input th:field="*{mobilePhone}" th:errorclass="is-invalid" type="text" class="form-control"
+                   id="mobilePhone"
+                   aria-describedby="mobilePhoneHelpInline" placeholder="Mobile Phone">
+        </div>
+
+        <div class="col-sm-10 w-100 pt-2">
+            <input th:field="*{street}" th:errorclass="is-invalid" type="text" class="form-control"
+                   id="street"
+                   aria-describedby="streetHelpInline" placeholder="Street">
+        </div>
+
+        <div class="col-sm-10 w-100 pt-2">
+            <input th:field="*{town}" th:errorclass="is-invalid" type="text" class="form-control"
+                   id="town"
+                   aria-describedby="townHelpInline" placeholder="Town">
+        </div>
+
+        <div class="col-sm-10 w-100 pt-2">
+            <select th:field="*{location}" th:errorclass="is-invalid" id="location" name="location"
+                    class="col-sm-10 w-100 pt-2"
+                    aria-describedby="locationHelpInline">
+                <option value="" selected>Location</option>
+                <option th:each="g : ${T(com.example.employee_management_system.model.entity.enums.LocationNameEnum).values()}"
+                        th:value="${g}"
+                        th:text="${g}">Action
+                </option>
+            </select>
+            <small id="locationHelpInline" class="invalid-feedback bg-danger text-light rounded">
+                You must select Location!
+            </small>
+        </div>
+
+
+        <div class="col-sm-10 w-100 pt-2">
+            <select th:field="*{department}" th:errorclass="is-invalid" id="department" name="department"
+                    class="col-sm-10 w-100 pt-2"
+                    aria-describedby="departmentHelpInline">
+                <option value="" selected>Department</option>
+                <option th:each="g : ${T(com.example.employee_management_system.model.entity.enums.DepartmentNameEnum).values()}"
+                        th:value="${g}"
+                        th:text="${g}">Action
+                </option>
+            </select>
+            <small id="departmentHelpInline" class="invalid-feedback bg-danger text-light rounded">
+                You must select the Department!
+            </small>
+        </div>
+
+        <div class="col-sm-10 w-100 pt-2">
+            <select th:field="*{position}" th:errorclass="is-invalid" id="position" name="position"
+                    class="col-sm-10 w-100 pt-2"
+                    aria-describedby="positionHelpInline">
+                <option value="" selected>Position</option>
+                <option th:each="g : ${T(com.example.employee_management_system.model.entity.enums.PositionNameEnum).values()}"
+                        th:value="${g}"
+                        th:text="${g}">Action
+                </option>
+            </select>
+            <small id="positionHelpInline" class="invalid-feedback bg-danger text-light rounded">
+                You must select the Position!
+            </small>
+        </div>
+
+        <button type="submit" role="button" class="mt-2 mb-4 btn btn-lg btn-outline-info border-2">Save</button>
+
+    </div>
+</form>
+</body>
+
+<footer th:replace="~{fragments/commons::footer}"></footer>
+<script th:replace="~{fragments/commons::script}"></script>
+
+</body>
+</html>

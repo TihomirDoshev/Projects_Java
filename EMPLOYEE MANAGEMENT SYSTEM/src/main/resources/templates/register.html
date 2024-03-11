@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="~{fragments/commons::head}"></head>
+<body class="container-fluid justify-content-center bg-dark">
+<nav th:replace="~{fragments/commons::navigation}"></nav>
+<body>
+
+<div id="main-register">
+    <div class="container text-light text-center pt-5 pb-5">
+        <h1 class="display-3">
+            <strong class="bg-blur rounded border-left border-white pl-3 text-info text-decoration-underline">Register</strong>
+        </h1>
+    </div>
+
+    <div class="border border-info border-2 rounded-3 w-50 container-fluid ">
+
+        <form class="register"
+              th:action="@{/users/register}"
+              th:method="POST"
+              th:object="${userRegisterBindingModel}">
+
+            <div class="form-group row container-fluid w-100">
+                <div class="col-sm-10 w-100 pb-2 pt-5">
+                    <input th:field="*{username}" th:errorclass="is-invalid" type="text" class="form-control"
+                           id="username"
+                           aria-describedby="usernameHelpInline" placeholder="Username">
+                    <small th:if="${#fields.hasErrors('username')}" th:errors="*{username}" id="usernameHelpInline"
+                           class="invalid-feedback bg-danger text-light rounded">
+                        Username length must be between 5 and 20 characters.
+                    </small>
+                </div>
+            </div>
+
+
+            <div class="form-group row container-fluid w-100 pb-4 pt-3">
+                <div class="col-sm-10 w-100">
+                    <input th:field="*{password}" th:errorclass="is-invalid" type="password" class="form-control"
+                           id="password"
+                           aria-describedby="passwordHelpInline" placeholder="Password">
+                    <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}" id="passwordHelpInline"
+                           class="invalid-feedback bg-danger text-light rounded">
+                        Password length must be between 5 and 20 characters.
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row container-fluid w-100 pb-4 pt-0">
+                <div class="col-sm-10 w-100">
+                    <input th:field="*{confirmPassword}" th:errorclass="is-invalid" type="password" class="form-control"
+                           id="confirmPassword"
+                           aria-describedby="confirmPasswordHelpInline" placeholder="Confirm password">
+                    <small th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"
+                           id="confirmPasswordHelpInline"
+                           class="invalid-feedback bg-danger text-light rounded">
+                        Confirm Password length must be between 5 and 20 characters.
+                    </small>
+                </div>
+            </div>
+
+            <button type="submit" role="button" class="mt-2 mb-4 btn btn-lg btn-outline-info border-2">Register</button>
+        </form>
+    </div>
+</div>
+
+</body>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+<script th:replace="~{fragments/commons::script}"></script>
+</body>
+</html>
